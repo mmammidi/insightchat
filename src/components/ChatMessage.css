@@ -1,0 +1,245 @@
+.message {
+  display: flex;
+  margin-bottom: 4px;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message.user {
+  justify-content: flex-end;
+}
+
+.message.bot {
+  justify-content: flex-start;
+}
+
+.message-content {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  max-width: 70%;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bot-avatar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.user-avatar {
+  background: linear-gradient(135deg, #34a853 0%, #0f9d58 100%);
+  color: white;
+}
+
+.message-bubble {
+  padding: 14px 18px;
+  border-radius: 20px;
+  position: relative;
+  word-wrap: break-word;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.user .message-bubble {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border-bottom-right-radius: 6px;
+}
+
+.bot .message-bubble {
+  background: #f8f9fa;
+  color: #202124;
+  border-bottom-left-radius: 6px;
+  border: 1px solid #e8eaed;
+}
+
+.error .message-bubble {
+  background: #fce8e6;
+  color: #c5221f;
+  border-left: 4px solid #ea4335;
+  animation: errorShake 0.5s ease-in-out;
+}
+
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.error .message-bubble::before {
+  content: '⚠️';
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.message-text {
+  margin: 0 0 6px 0;
+  font-size: 15px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  letter-spacing: 0.1px;
+  word-break: break-word;
+}
+
+.message-link {
+  color: #1a73e8;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(26, 115, 232, 0.3);
+  transition: all 0.2s ease;
+  word-break: break-all;
+}
+
+.message-link:hover {
+  color: #1557b0;
+  border-bottom-color: #1557b0;
+  background: rgba(26, 115, 232, 0.05);
+}
+
+.user .message-link {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+.user .message-link:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.citations {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e8eaed;
+}
+
+.user .message-bubble .citations {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+.citations-title {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #5f6368;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.user .message-bubble .citations-title {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.citation-item {
+  margin-bottom: 6px;
+  font-size: 13px;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.citation-number {
+  font-weight: 600;
+  color: #667eea;
+  flex-shrink: 0;
+}
+
+.user .message-bubble .citation-number {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.citation-link {
+  color: #1a73e8;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  word-break: break-word;
+  display: block;
+  margin-bottom: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(26, 115, 232, 0.05);
+}
+
+.citation-link:hover {
+  color: #1557b0;
+  background: rgba(26, 115, 232, 0.1);
+  text-decoration: underline;
+}
+
+.user .message-bubble .citation-link {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.user .message-bubble .citation-link:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.citation-author {
+  font-size: 12px;
+  color: #5f6368;
+  font-style: italic;
+  margin-left: 4px;
+}
+
+.user .message-bubble .citation-author {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.message-time {
+  font-size: 11px;
+  opacity: 0.75;
+  display: block;
+  text-align: right;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  margin-top: 6px;
+}
+
+.user .message-time {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.bot .message-time {
+  color: #5f6368;
+}
+
+@media (max-width: 768px) {
+  .message-content {
+    max-width: 85%;
+  }
+  
+  .avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  
+  .message-bubble {
+    padding: 10px 14px;
+  }
+  
+  .message-text {
+    font-size: 14px;
+  }
+}
+
