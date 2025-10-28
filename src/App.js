@@ -4,6 +4,9 @@ import ChatMessage from './components/ChatMessage';
 import ChatInput from './components/ChatInput';
 import axios from 'axios';
 
+// Get API URL from environment variable with fallback
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+
 function App() {
   const [messages, setMessages] = useState([
     {
@@ -29,8 +32,8 @@ function App() {
     setIsLoading(true);
 
     try {
-      // Call the API endpoint
-      const response = await axios.post('http://localhost:8000/api/ask', {
+      // Call the API endpoint using configured URL
+      const response = await axios.post(`${API_URL}/api/ask`, {
         question: question
       });
 
@@ -63,7 +66,7 @@ function App() {
         }
       } else if (error.request) {
         // Request was made but no response received
-        errorText += 'Unable to connect to the server. Please make sure the backend is running at http://localhost:8000 and try again.';
+        errorText += `Unable to connect to the server. Please make sure the backend is running at ${API_URL} and try again.`;
       } else {
         // Something else happened
         errorText += error.message || 'An unexpected error occurred. Please try again.';
