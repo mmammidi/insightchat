@@ -46,6 +46,7 @@ You can create multiple environment files:
 | Variable | Description | Default | Required |
 |----------|-------------|---------|----------|
 | `REACT_APP_API_URL` | Backend API base URL | `http://localhost:8000` | No |
+| `REACT_APP_API_ENABLED` | Feature flag to enable/disable API calls | `true` | No |
 
 ### Examples:
 
@@ -62,6 +63,13 @@ REACT_APP_API_URL=https://staging-api.yourcompany.com
 **Production Environment:**
 ```
 REACT_APP_API_URL=https://api.yourcompany.com
+REACT_APP_API_ENABLED=true
+```
+
+**Disabled API (Testing/Demo Mode):**
+```
+REACT_APP_API_URL=http://localhost:8000
+REACT_APP_API_ENABLED=false
 ```
 
 ### Deployment Platforms:
@@ -90,6 +98,33 @@ docker run -e REACT_APP_API_URL=https://api.yourcompany.com your-image
 Or use a `.env` file:
 ```bash
 docker run --env-file .env your-image
+```
+
+### Feature Flag - API Enabled:
+
+The `REACT_APP_API_ENABLED` feature flag controls whether the application can make API calls to the backend.
+
+**When enabled (`true`):**
+- Application makes API calls to the configured backend URL
+- Users can ask questions and receive AI-powered responses
+- Full functionality is available
+
+**When disabled (`false`):**
+- API calls are blocked at the application level
+- Users receive an informational message explaining the feature is disabled
+- Useful for:
+  - Demo environments where backend is not available
+  - Testing the UI without a backend
+  - Temporarily disabling the feature during maintenance
+  - Cost control in development/staging environments
+
+**Usage:**
+```bash
+# Enable API calls (default)
+REACT_APP_API_ENABLED=true
+
+# Disable API calls
+REACT_APP_API_ENABLED=false
 ```
 
 ### Important Notes:

@@ -7,6 +7,9 @@ import axios from 'axios';
 // Get API URL from environment variable with fallback
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
+// Feature flag to enable/disable API calls
+const API_ENABLED = process.env.REACT_APP_API_ENABLED === 'true';
+
 function App() {
   const [messages, setMessages] = useState([
     {
@@ -30,6 +33,21 @@ function App() {
     };
     setMessages(prev => [...prev, userMessage]);
     setIsLoading(true);
+
+    // Check if API is enabled via feature flag
+    if (!API_ENABLED) {
+      // API is disabled - show informational message
+      const disabledMessage = {
+        id: Date.now() + 1,
+        text: "Currently this feature is turned OFF. Please contact the system administrator to turn ON this feature.",
+        sender: 'bot',
+        timestamp: new Date(),
+        isInfo: true
+      };
+      setMessages(prev => [...prev, disabledMessage]);
+      setIsLoading(false);
+      return;
+    }
 
     try {
       // Call the API endpoint using configured URL

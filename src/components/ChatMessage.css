@@ -93,6 +93,34 @@
   font-size: 16px;
 }
 
+.info .message-bubble {
+  background: #e8f4fd;
+  color: #1967d2;
+  border-left: 4px solid #1a73e8;
+  animation: infoSlide 0.5s ease-out;
+}
+
+@keyframes infoSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.info .message-bubble::before {
+  content: 'ℹ️';
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.info .message-time {
+  color: #1967d2;
+}
+
 .message-text {
   margin: 0 0 6px 0;
   font-size: 15px;

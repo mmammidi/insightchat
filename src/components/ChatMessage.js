@@ -2,7 +2,7 @@ import React from 'react';
 import './ChatMessage.css';
 
 const ChatMessage = ({ message }) => {
-  const { text, sender, timestamp, isError, citations = [], sources = [] } = message;
+  const { text, sender, timestamp, isError, isInfo, citations = [], sources = [] } = message;
   
   const formatTime = (date) => {
     return new Date(date).toLocaleTimeString('en-US', {
@@ -75,7 +75,7 @@ const ChatMessage = ({ message }) => {
   };
 
   return (
-    <div className={`message ${sender} ${isError ? 'error' : ''}`}>
+    <div className={`message ${sender} ${isError ? 'error' : ''} ${isInfo ? 'info' : ''}`}>
       <div className="message-content">
         {sender === 'bot' && (
           <div className="avatar bot-avatar">
